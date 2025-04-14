@@ -91,7 +91,9 @@ GROUP BY c.name;
 
 
 -- Query 4: Calculate the total revenue generated from book sales.
-
+SELECT round(sum(quantity * price)) as total_revenue
+FROM orders as o
+JOIN books b ON o.book_id = b.id;
 
 
 
