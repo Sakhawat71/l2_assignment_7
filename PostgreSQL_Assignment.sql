@@ -91,12 +91,17 @@ GROUP BY c.name;
 
 
 -- Query 4: Calculate the total revenue generated from book sales.
-SELECT round(sum(quantity * price)) as total_revenue
+SELECT round(sum(o.quantity * b.price)) as total_revenue
 FROM orders as o
 JOIN books b ON o.book_id = b.id;
 
 
-
+-- Query 5: List all customers who have placed more than one order.
+SELECT c.name , count(*)
+FROM customers c
+JOIN orders o ON o.customer_id = c.id
+GROUP BY c.name
+HAVING COUNT(o.id) > 1; 
 
 
 
