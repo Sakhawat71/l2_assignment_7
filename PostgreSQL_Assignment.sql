@@ -1,4 +1,4 @@
--- Active: 1744229128545@@127.0.0.1@5432@bookstore_db
+-- Active: 1744229128545@@127.0.0.1@5432@bookstore_db@public
 
 -- Create database and Connect to the database
 -- CREATE DATABASE bookstore_db;
@@ -68,6 +68,29 @@ INSERT INTO orders (customer_id, book_id, quantity, order_date) VALUES
 
 
 
+
+------------------------------------
+-- **** PostgreSQL Query ****
+------------------------------------
+
+-- Query 1: Find books that are out of stock.
+SELECT title FROM books
+    WHERE stock = 0;
+
+
+-- Query 2: Retrieve the most expensive book in the store.
+SELECT * FROM books
+    ORDER BY price DESC LIMIT 1;
+
+
+-- Query 3: Find the total number of orders placed by each customer.
+SELECT c.name, count(o.id) as total_orders
+FROM customers as c
+JOIN orders as o ON o.customer_id = c.id
+GROUP BY c.name;
+
+
+-- Query 4: Calculate the total revenue generated from book sales.
 
 
 
