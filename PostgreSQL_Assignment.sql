@@ -1,6 +1,6 @@
 -- Active: 1744229128545@@127.0.0.1@5432@bookstore_db@public
 
--- Create database and Connect to the database
+-- ** Create database and Connect to the database **
 -- CREATE DATABASE bookstore_db;
 -- \c bookstore_db
 
