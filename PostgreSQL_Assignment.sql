@@ -115,13 +115,13 @@ SET price = price * 1.10
 WHERE published_year > 2000;
 
 
+-- Query 8: Delete customers who haven't placed any orders.
+DELETE FROM customers
+WHERE id NOT IN (SELECT customer_id FROM orders);
 
 
 
 -- DROP TABLE orders;
-
-SELECT * FROM books;
-
-SELECT * FROM customers;
-
-SELECT * FROM orders;
+-- SELECT * FROM books;
+-- SELECT * FROM customers;
+-- SELECT * FROM orders;
