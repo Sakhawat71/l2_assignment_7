@@ -45,18 +45,18 @@ CREATE TABLE orders (
 
 -- Insert data into books table
 INSERT INTO books (title, author, price, stock, published_year) VALUES
-('The Pragmatic Programmer', 'Andrew Hunt', 40.00, 10, 1999),
-('Clean Code', 'Robert C. Martin', 35.00, 15, 2008),
-('Introduction to Algorithms', 'Thomas H. Cormen', 80.00, 5, 2009),
-('Design Patterns', 'Erich Gamma', 50.00, 7, 1994),
-('Refactoring', 'Martin Fowler', 45.00, 12, 1999);
+    ('The Pragmatic Programmer', 'Andrew Hunt', 40.00, 10, 1999),
+    ('Clean Code', 'Robert C. Martin', 35.00, 5, 2008),
+    ('You Don''t Know JS', 'Kyle Simpson', 30.00, 8, 2014),
+    ('Refactoring', 'Martin Fowler', 50.00, 3, 1999),
+    ('Database Design Principles', 'Jane Smith', 20.00, 0, 2018);
 
 
 -- Insert data into customers table
-INSERT INTO customers (name, email) VALUES
-('Alice Johnson', 'alice@example.com'),
-('Bob Smith', 'bob@example.com'),
-('Charlie Brown', 'charlie@example.com');
+INSERT INTO customers (name, email, joined_date) VALUES
+    ('Alice', 'alice@email.com', '2023-01-10'),
+    ('Bob', 'bob@email.com', '2022-05-15'),
+    ('Charlie', 'charlie@email.com', '2023-06-20');
 
 
 
@@ -75,12 +75,12 @@ INSERT INTO orders (customer_id, book_id, quantity, order_date) VALUES
 
 -- Query 1: Find books that are out of stock.
 SELECT title FROM books
-    WHERE stock = 0;
+WHERE stock = 0;
 
 
 -- Query 2: Retrieve the most expensive book in the store.
 SELECT * FROM books
-    ORDER BY price DESC LIMIT 1;
+ORDER BY price DESC LIMIT 1;
 
 
 -- Query 3: Find the total number of orders placed by each customer.
@@ -97,7 +97,7 @@ JOIN books b ON o.book_id = b.id;
 
 
 -- Query 5: List all customers who have placed more than one order.
-SELECT c.name , count(*)
+SELECT c.name , count(*) as orders_count 
 FROM customers c
 JOIN orders o ON o.customer_id = c.id
 GROUP BY c.name
@@ -112,7 +112,7 @@ FROM books;
 -- Query 7: Increase the price of all books published before 2000 by 10%.
 UPDATE books
 SET price = price * 1.10
-WHERE published_year > 2000;
+WHERE published_year < 2000;
 
 
 -- Query 8: Delete customers who haven't placed any orders.
@@ -121,7 +121,10 @@ WHERE id NOT IN (SELECT customer_id FROM orders);
 
 
 
+-- DROP TABLE books;
+-- DROP TABLE customers;
 -- DROP TABLE orders;
+
 -- SELECT * FROM books;
 -- SELECT * FROM customers;
 -- SELECT * FROM orders;
