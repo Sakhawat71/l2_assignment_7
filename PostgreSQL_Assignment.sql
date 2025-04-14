@@ -91,7 +91,7 @@ GROUP BY c.name;
 
 
 -- Query 4: Calculate the total revenue generated from book sales.
-SELECT round(sum(o.quantity * b.price)) as total_revenue
+SELECT round(sum(o.quantity * b.price),2) as total_revenue
 FROM orders as o
 JOIN books b ON o.book_id = b.id;
 
@@ -102,6 +102,19 @@ FROM customers c
 JOIN orders o ON o.customer_id = c.id
 GROUP BY c.name
 HAVING COUNT(o.id) > 1; 
+
+
+-- Query 6: Find the average price of books in the store.
+SELECT round(AVG(price),2) as avg_book_price
+FROM books;
+
+
+-- Query 7: Increase the price of all books published before 2000 by 10%.
+UPDATE books
+SET price = price * 1.10
+WHERE published_year > 2000;
+
+
 
 
 
